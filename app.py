@@ -6,7 +6,6 @@ from salary.calculator import calculate_salary
 def format_euro(value: float) -> str:
     return f"{value:,.0f}".replace(",", ".") + " €"
 
-
 # Titolo pagina
 st.set_page_config(page_title="Simulatore Stipendio Netto", page_icon="💰", layout="centered")
 
@@ -40,8 +39,8 @@ anno = st.selectbox(
 
 st.markdown(
     """
-    <div style="color: grey; font-style: italic; text-align: right;">
-        lavoratore dipendente a tempo indeterminato che vive a Milano senza agevolazioni
+    <div style="color: grey; font-style: italic; font-size: 14px; text-align: right;">
+        lavoratore dipendente a tempo indeterminato a Milano senza agevolazioni
     </div>
     """,
     unsafe_allow_html=True
@@ -71,92 +70,104 @@ if st.button("Calcola netto"):
 
         with col1:
             st.metric(
-                label="Netto annuale",
+                label="💰 Netto annuale",
                 value=f"{result.netto_annuo:,.2f} €"
             )
 
         with col2:
             st.metric(
-                label="Netto mensile",
+                label="📅 Netto mensile",
                 value=f"{result.netto_mensile:,.2f} €"
             )
+        
+        st.divider()
 
-        st.subheader("📊 Dettaglio Tasse")
+        # DETTAGLIO SEMPLIFICATO
 
-        data = [
-            {
-                "Dicitura formale": "Contributi previdenziali",
-                "AKA": "Per la pensione",
-                "Valore annuale": format_euro(result.contributi),
-                "Valore mensile": format_euro(result.contributi / input_data.mensilita),
-            },
-            {
-                "Dicitura formale": "IRPEF lorda",
-                "AKA": "La tassa principale sul tuo reddito",
-                "Valore annuale": format_euro(result.irpef_lorda),
-                "Valore mensile": format_euro(result.irpef_lorda / input_data.mensilita),
-            },
-            {
-                "Dicitura formale": "Detrazioni lavoro dipendente",
-                "AKA": "Lo sconto base sulle tasse",
-                "Valore annuale": format_euro(result.detrazioni_lavoro),
-                "Valore mensile": format_euro(result.detrazioni_lavoro / input_data.mensilita),
-            },
-            {
-                "Dicitura formale": "Detrazione cuneo fiscale",
-                "AKA": "Bonus per ridurre le tasse",
-                "Valore annuale": format_euro(result.detrazione_cuneo_fiscale),
-                "Valore mensile": format_euro(result.detrazione_cuneo_fiscale / input_data.mensilita),
-            },
-            {
-                "Dicitura formale": "Somma Integrativa",
-                "AKA": "Bonus per redditi bassi",
-                "Valore annuale": format_euro(result.somma_integrativa),
-                "Valore mensile": format_euro(result.somma_integrativa / input_data.mensilita),
-            },
-            {
-                "Dicitura formale": "IRPEF netta",
-                "AKA": "Quello che davvero paghi allo Stato",
-                "Valore annuale": format_euro(result.irpef_netta),
-                "Valore mensile": format_euro(result.irpef_netta / input_data.mensilita),
-            },
-            {
-                "Dicitura formale": "Addizionale regionale",
-                "AKA": "La quota per la Regione",
-                "Valore annuale": format_euro(result.addizionale_regionale),
-                "Valore mensile": format_euro(result.addizionale_regionale / input_data.mensilita),
-            },
-            {
-                "Dicitura formale": "Addizionale comunale",
-                "AKA": "La quota per il Comune",
-                "Valore annuale": format_euro(result.addizionale_comunale),
-                "Valore mensile": format_euro(result.addizionale_comunale / input_data.mensilita),
-            },
-            {
-                "Dicitura formale": "Reddito Netto",
-                "AKA": "Cosa ti resta",
-                "Valore annuale": format_euro(result.netto_annuo),
-                "Valore mensile": format_euro(result.netto_mensile),
-            },
+        st.subheader("🧾 Dove finiscono i soldi del tuo stipendio")
+
+        with st.expander("Contributi", True, icon="👴🏼"):
+            st.caption("Quota che versi per la tua pensione futura.")
+            col1, col2 = st.columns([4, 1])
+            with col1:
+                st.write("Contributi previdenziali")
+            with col2:
+                st.write(round(result.contributi, 2))
             
-        ]
+        with st.expander("IRPEF", True, icon="💸"):
+            st.caption("L’imposta principale sul tuo reddito.")
+            col1, col2 = st.columns([4, 1])
+            with col1:
+                st.write("IRPEF lorda (prima degli sconti):")
+            with col2:
+                st.write(round(result.irpef_lorda, 2))
+
+            with col1:
+                st.write("Detrazioni lavoro dipendente:")
+            with col2:
+                st.write(round(-result.detrazioni_lavoro, 2))
+
+            with col1:
+                st.write("Bonus cuneo fiscale:")
+            with col2:
+                st.write(round(-result.detrazione_cuneo_fiscale, 2))
+
+            with col1:
+                st.write("Somma integrativa:")
+            with col2:
+                st.write(round(-result.somma_integrativa, 2))
+
+            with col1:
+                st.write("👉 IRPEF netta (quella che paghi davvero):")
+            with col2:
+                st.write(round(result.irpef_netta, 2))
+
+        with st.expander("Addizionali", True, icon="🌆"):
+            st.caption("Imposte locali trattenute da Regione e Comune.")
+            col1, col2 = st.columns([4, 1])
+            with col1:
+                st.write("Addizionale regionale:")
+            with col2:
+                st.write(round(result.addizionale_regionale, 2))
+
+            with col1:
+                st.write("Addizionale comunale:")
+            with col2:
+                st.write(round(result.addizionale_comunale, 2))
+
+        # =========================
+        # FRASE FINALE IMPATTANTE
+        # =========================
+
+        # =========================
+        # LORDO → NETTO BAR
+        # =========================
 
 
-        df = pd.DataFrame(data)
+        st.divider()
 
-        st.dataframe(df, hide_index=True, width='stretch')
+        st.subheader("🛖 Quanto porti a casa")
 
-
-        percentuale_tasse = (
+        totale_tasse = (
             result.contributi +
             result.irpef_netta +
             result.addizionale_regionale +
             result.addizionale_comunale
-        ) / result.ral * 100
+        )
 
-        st.info(
-            f"Su una RAL di {format_euro(result.ral)}, "
-            f"trattieni circa il {percentuale_tasse:.1f}% in tasse e contributi."
+        percentuale_tasse = totale_tasse / result.ral
+        percentuale_netto = result.netto_annuo / result.ral
+
+        st.progress(percentuale_netto)
+
+        st.write(
+            f"Su {format_euro(result.ral)} di RAL:\n"
+            f"- 💸 {format_euro(totale_tasse)} vanno in tasse e contributi\n"
+            f"- 💰 {format_euro(result.netto_annuo)} ti restano"
+        )
+        st.success(
+            f"Lo Stato trattiene {format_euro(totale_tasse)} "
+            f"({percentuale_tasse*100:.1f}% del tuo lordo)."
         )
 
 
