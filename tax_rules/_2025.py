@@ -1,21 +1,33 @@
 TAX_RULES = {
-    "year": 2025,
+    "year": 2026,
 
     "contributions": {
-        "employee_rate": 0.0919
+        "employee_rate": 0.0949
     },
 
     "irpef": {
         "brackets": [
             {"limit": 28000, "rate": 0.23},
-            {"limit": 50000, "rate": 0.35},
+            {"limit": 50000, "rate": 0.33},
             {"limit": None, "rate": 0.43}
         ]
     },
 
     "addizionali": {
-        "regionale": 0.0123,
-        "comunale": 0.008
+        "regionale": {
+            "brackets": [
+                {"limit": 15000, "rate": 0.0123},
+                {"limit": 28000, "rate": 0.0158},
+                {"limit": 50000, "rate": 0.0172},
+                {"limit": None, "rate": 0.0173}
+            ]
+        },
+        "comunale": {
+            "brackets": [
+                {"limit": 23000, "rate": 0.0},
+                {"limit": None, "rate": 0.008},
+            ]
+        },
     },
 
     "detrazioni": {

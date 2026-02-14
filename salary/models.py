@@ -17,7 +17,9 @@ class SalaryBreakdown(BaseModel):
     contributi: float
     imponibile_irpef: float
     irpef_lorda: float
-    detrazioni: float
+    detrazioni_lavoro: float
+    detrazione_cuneo_fiscale: float
+    somma_integrativa: float
     irpef_netta: float
     addizionale_regionale: float
     addizionale_comunale: float

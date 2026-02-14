@@ -2,7 +2,7 @@ TAX_RULES = {
     "year": 2026,
 
     "contributions": {
-        "employee_rate": 0.0919
+        "employee_rate": 0.0949
     },
 
     "irpef": {
@@ -22,12 +22,8 @@ TAX_RULES = {
                 {"limit": None, "rate": 0.0173}
             ]
         },
-        "comunale": {
-            "brackets": [
-                {"limit": 23000, "rate": 0.0},
-                {"limit": None, "rate": 0.008},
-            ]
-        },
+        "comunale": 
+            {"lowerLimit": 23000, "rate": 0.008},
     },
 
     "detrazioni": {

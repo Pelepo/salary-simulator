@@ -7,7 +7,11 @@ from salary.addizionali import (
     calculate_regional_additional,
     calculate_municipal_additional,
 )
-from salary.detrazioni import calculate_employee_deduction
+from salary.detrazioni import (
+    calculate_employee_deduction,
+    calculate_cuneo_fiscale_bonus
+)
+from salary.somma_integrativa import calculate_somma_integrativa
 from tax_rules.loader import get_tax_rules
 
 
@@ -29,7 +33,9 @@ def calculate_salary(input_data: SalaryInput) -> SalaryBreakdown:
     irpef_lorda = calculate_irpef(imponibile, brackets)
 
     # 4 Detrazioni Lavoro Dipendente
-    detrazioni = calculate_employee_deduction(imponibile)
+    detrazioni_lavoro = calculate_employee_deduction(imponibile, ral)
+    detrazione_cuneo_fiscale= calculate_cuneo_fiscale_bonus(ral)
+    detrazioni = detrazioni_lavoro + detrazione_cuneo_fiscale
 
     irpef_netta = max(irpef_lorda - detrazioni, 0)
 
@@ -39,11 +45,14 @@ def calculate_salary(input_data: SalaryInput) -> SalaryBreakdown:
     )
 
     add_comunale = calculate_municipal_additional(
-        imponibile, rules["addizionali"]["comunale"]["brackets"]
+        imponibile, rules["addizionali"]["comunale"]
     )
 
+    #6 Somma Integrativa
+    somma_integrativa = calculate_somma_integrativa(ral)
+
     # 6 Sipendio Mensile Netto
-    netto_annuo = ral - contributi - irpef_netta - add_regionale - add_comunale
+    netto_annuo = ral - contributi - irpef_netta - add_regionale - add_comunale + somma_integrativa
     netto_mensile = netto_annuo / input_data.mensilita
 
     return SalaryBreakdown(
@@ -51,7 +60,9 @@ def calculate_salary(input_data: SalaryInput) -> SalaryBreakdown:
         contributi=contributi,
         imponibile_irpef=imponibile,
         irpef_lorda=irpef_lorda,
-        detrazioni=detrazioni,
+        detrazioni_lavoro=detrazioni_lavoro,
+        detrazione_cuneo_fiscale=detrazione_cuneo_fiscale,
+        somma_integrativa=somma_integrativa,
         irpef_netta=irpef_netta,
         addizionale_regionale=add_regionale,
         addizionale_comunale=add_comunale,

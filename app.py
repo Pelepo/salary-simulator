@@ -97,10 +97,22 @@ if st.button("Calcola netto"):
                 "Valore mensile": format_euro(result.irpef_lorda / input_data.mensilita),
             },
             {
-                "Dicitura formale": "Detrazioni",
-                "AKA": "Lo sconto sulle tasse",
-                "Valore annuale": format_euro(result.detrazioni),
-                "Valore mensile": format_euro(result.detrazioni / input_data.mensilita),
+                "Dicitura formale": "Detrazioni lavoro dipendente",
+                "AKA": "Lo sconto base sulle tasse",
+                "Valore annuale": format_euro(result.detrazioni_lavoro),
+                "Valore mensile": format_euro(result.detrazioni_lavoro / input_data.mensilita),
+            },
+            {
+                "Dicitura formale": "Detrazione cuneo fiscale",
+                "AKA": "Bonus per ridurre le tasse",
+                "Valore annuale": format_euro(result.detrazione_cuneo_fiscale),
+                "Valore mensile": format_euro(result.detrazione_cuneo_fiscale / input_data.mensilita),
+            },
+            {
+                "Dicitura formale": "Somma Integrativa",
+                "AKA": "Bonus per redditi bassi",
+                "Valore annuale": format_euro(result.somma_integrativa),
+                "Valore mensile": format_euro(result.somma_integrativa / input_data.mensilita),
             },
             {
                 "Dicitura formale": "IRPEF netta",
@@ -120,7 +132,15 @@ if st.button("Calcola netto"):
                 "Valore annuale": format_euro(result.addizionale_comunale),
                 "Valore mensile": format_euro(result.addizionale_comunale / input_data.mensilita),
             },
+            {
+                "Dicitura formale": "Reddito Netto",
+                "AKA": "Cosa ti resta",
+                "Valore annuale": format_euro(result.netto_annuo),
+                "Valore mensile": format_euro(result.netto_mensile),
+            },
+            
         ]
+
 
         df = pd.DataFrame(data)
 
