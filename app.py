@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 from salary.models import SalaryInput, TaxYear
 from salary.calculator import calculate_salary
+from streamlit_echarts import st_echarts
+from ui import colored_badge 
 
 def format_euro(value: float) -> str:
     return f"{value:,.0f}".replace(",", ".") + " €"
@@ -92,35 +94,44 @@ if st.button("Calcola netto"):
             with col1:
                 st.write("Contributi previdenziali")
             with col2:
-                st.write(round(result.contributi, 2))
-            
+                valore = round(-result.contributi, 2)
+                colored_badge(valore)
         with st.expander("IRPEF", True, icon="💸"):
             st.caption("L’imposta principale sul tuo reddito.")
             col1, col2 = st.columns([4, 1])
             with col1:
                 st.write("IRPEF lorda (prima degli sconti):")
             with col2:
-                st.write(round(result.irpef_lorda, 2))
+                valore = round(-result.irpef_lorda, 2)
+                colored_badge(valore)
 
+            col1, col2 = st.columns([4, 1])
             with col1:
                 st.write("Detrazioni lavoro dipendente:")
             with col2:
-                st.write(round(-result.detrazioni_lavoro, 2))
+                valore = round(result.detrazioni_lavoro, 2)
+                colored_badge(valore)
 
+            col1, col2 = st.columns([4, 1])
             with col1:
                 st.write("Bonus cuneo fiscale:")
             with col2:
-                st.write(round(-result.detrazione_cuneo_fiscale, 2))
+                valore = round(result.detrazione_cuneo_fiscale, 2)
+                colored_badge(valore)
 
+            col1, col2 = st.columns([4, 1])
             with col1:
                 st.write("Somma integrativa:")
             with col2:
-                st.write(round(-result.somma_integrativa, 2))
+                valore = round(result.somma_integrativa, 2)
+                colored_badge(valore)
 
+            col1, col2 = st.columns([4, 1])
             with col1:
                 st.write("👉 IRPEF netta (quella che paghi davvero):")
             with col2:
-                st.write(round(result.irpef_netta, 2))
+                valore = round(-result.irpef_netta, 2)
+                colored_badge(valore)
 
         with st.expander("Addizionali", True, icon="🌆"):
             st.caption("Imposte locali trattenute da Regione e Comune.")
@@ -128,21 +139,17 @@ if st.button("Calcola netto"):
             with col1:
                 st.write("Addizionale regionale:")
             with col2:
-                st.write(round(result.addizionale_regionale, 2))
+                valore = round(-result.addizionale_regionale, 2)
+                colored_badge(valore)
 
+            col1, col2 = st.columns([4, 1])
             with col1:
                 st.write("Addizionale comunale:")
             with col2:
-                st.write(round(result.addizionale_comunale, 2))
-
-        # =========================
-        # FRASE FINALE IMPATTANTE
-        # =========================
-
-        # =========================
-        # LORDO → NETTO BAR
-        # =========================
-
+                valore = round(-result.addizionale_comunale, 2)
+                colored_badge(valore)
+        
+        # FINALE 
 
         st.divider()
 
