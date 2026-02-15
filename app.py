@@ -174,6 +174,8 @@ if st.button("Calcola netto"):
         percentuale_tasse = totale_tasse / result.ral
         percentuale_netto = result.netto_annuo / result.ral
 
+        percentuale_netto = max(0.0, min(1.0, percentuale_netto))
+
         st.progress(percentuale_netto)
 
         st.write(
