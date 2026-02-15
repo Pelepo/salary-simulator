@@ -12,8 +12,6 @@ L'obiettivo del progetto è:
 - Mostrare tutte le voci che devono essere trattenute dal lordo in modo semplice e chiaro
 - Strutturare le logiche in modo modulare e versionabile
 
-Il modello rappresenta una simulazione semplificata e parametrizzabile. Eventuali evoluzioni possono riguardare l'estensione normativa, la generalizzazione territoriale e l’automatizzazione degli aggiornamenti fiscali.
-
 ## Ipotesi di simulazione
 
 Il modello attuale considera:
@@ -104,6 +102,21 @@ Guida fiscale su detrazioni lavoro dipendente -> https://www.informazionefiscale
 6. Calcolo netto annuale e mensile
 
 ⚠️⚠️⚠️⚠️⚠️ Il modello non include il trattamento integrativo (ex Bonus IRPEF 100€)
+
+## 🚀 Possibili sviluppi futuri
+
+### 1. Estensione del modello fiscale
+
+- Inclusione trattamento integrativo (ex Bonus 100€)
+- Gestione familiari a carico, bonus rimpatriati
+- Gestione più CCNL e aliquote INPS variabili
+- Supporto multi-regione e multi-comune
+
+### 2. Miglioramenti di prodotto
+
+- Miglior breakdown grafico delle trattenute
+- Comparazione tra RAL diverse
+- Simulazione RAL vs partita IVA
 
 ---
 
