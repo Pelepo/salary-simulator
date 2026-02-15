@@ -2,7 +2,7 @@ TAX_RULES = {
     "year": 2026,
 
     "contributions": {
-        "employee_rate": 0.0949
+        "employee_rate": 0.0919
     },
 
     "irpef": {

@@ -20,7 +20,6 @@ Il modello attuale considera:
 - Residente a Milano
 - Nessuna agevolazione fiscale
 - Nessun familiare a carico
-- Azienda con più di 15 dipendenti
 
 ⚠️⚠️⚠️⚠️⚠️ Il modello non include il trattamento integrativo (ex Bonus IRPEF 100€)
 
@@ -30,9 +29,9 @@ La RAL viene trasformata in netto secondo la seguente sequenza:
 
 1. Contributi previdenziali lavoratore
 
-9,49%
+9,19%
 
-La componente contributiva a carico del lavoratore è stata modellata, per semplicità, con un’aliquota media del 9,49%, riferita alla componente IVS (Invalidità, Vecchiaia e Superstiti) dei contributi obbligatori.
+La componente contributiva a carico del lavoratore è stata modellata, per semplicità, con un’aliquota media del 9,19%, riferita alla componente IVS (Invalidità, Vecchiaia e Superstiti) dei contributi obbligatori.
 
 ⚠️ Le aliquote effettive possono variare in funzione del CCNL applicato, della dimensione dell'azienda (stiamo considerando una azienda con più di 15 dipendenti) della gestione previdenziale e di eventuali fondi integrativi
 
