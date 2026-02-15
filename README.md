@@ -20,6 +20,9 @@ Il modello attuale considera:
 - Residente a Milano
 - Nessuna agevolazione fiscale
 - Nessun familiare a carico
+- Azienda con più di 15 dipendenti
+
+⚠️⚠️⚠️⚠️⚠️ Il modello non include il trattamento integrativo (ex Bonus IRPEF 100€)
 
 ## 🧮 Logica di calcolo
 
@@ -82,10 +85,10 @@ Source: Comune di Milano – Addizionale comunale IRPEF -> https://www.comune.mi
 
 Per i lavoratori con REDDITO COMPLESSIVO fino a 20.000 € spetta una somma integrativa aggiuntiva in busta paga, calcolata in percentuale sul reddito:
 
-Fino a 8.500 € ⇒ 7,1% del reddito
-Tra 8.500 € e 15.000 € ⇒ 5,3% del reddito
-Tra 15.000 € e 20.000 € ⇒ 4,8% del reddito
-Oltre 20.000 € ⇒ nessuna somma integrativa
+Fino a 8.500 € => 7,1% del reddito
+Tra 8.500 € e 15.000 € => 5,3% del reddito
+Tra 15.000 € e 20.000 € => 4,8% del reddito
+Oltre 20.000 € => nessuna somma integrativa
 
 Source: Guida fiscale su detrazioni lavoro dipendente -> https://www.informazionefiscale.it/detrazioni-lavoro-dipendente-importo-calcolo
 
