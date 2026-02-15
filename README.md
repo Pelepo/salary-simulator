@@ -48,14 +48,14 @@ Source: Agenzia delle Entrate – Aliquote e calcolo IRPEF -> https://www.agenzi
 3. Detrazioni per lavoro dipendente
 
 fino a 15,000€ => 1,955€
-15.000 € < Reddito Imponibile ≤ 28.000 € => 1.910 + 1.190 × (28.000−reddito)​ / 13.000
-28.000 € < Reddito Imponibile ≤ 50.000 € => 1.910 × (50.000−reddito) / 22.000
+15.000 € < Reddito IMPONIBILE ≤ 28.000 € => 1.910 + 1.190 × (28.000−reddito)​ / 13.000
+28.000 € < Reddito IMPONIBILE ≤ 50.000 € => 1.910 × (50.000−reddito) / 22.000
 oltre a 50,000€ => Nessuna detrazione
-⚠️ Inoltre per i REDDITI COMPLESSIVI superiori a 25.000 euro e fino a 35.000 euro, l’importo della detrazione va aumentato di 65 euro.
+⚠️ Inoltre per i reddito COMPLESSIVI superiori a 25.000 euro e fino a 35.000 euro, l’importo della detrazione va aumentato di 65 euro.
 
 Source: Guida fiscale su detrazioni lavoro dipendente -> https://www.informazionefiscale.it/detrazioni-lavoro-dipendente-importo-calcolo
 
-Per i lavoratori con REDDITO COMPLESSIVO tra 20.000 € e 40.000 € spetta una detrazione aggiuntiva sull’IRPEF:
+Per i lavoratori con reddito COMPLESSIVO tra 20.000 € e 40.000 € spetta una detrazione aggiuntiva sull’IRPEF:
 Tra 20.000 € e 32.000 € => detrazione fissa di 1.000 €
 Tra 32.000 € e 40.000 € => detrazione che diminuisce progressivamente da 1.000 € a 0 €
 Oltre 40.000 € => nessuna detrazione
@@ -66,8 +66,8 @@ Source: ANCE - Legge di Bilancio 2025 -> https://portale.assimpredilance.it/arti
 
 fino a 15,000€ => 1,23%
 
-15.000 € < Reddito Imponibile ≤ 28.000 € => 1,58%
-28.000 € < Reddito Imponibile ≤ 50.000 € => 1,72%
+15.000 € < Reddito IMPONIBILE ≤ 28.000 € => 1,58%
+28.000 € < Reddito IMPONIBILE ≤ 50.000 € => 1,72%
 
 Oltre i 50.000 euro => 1,73%
 
@@ -75,14 +75,14 @@ Source: Regione Lombardia – Addizionale IRPEF -> https://www.regione.lombardia
 
 5. Addizionale comunale
 
-Reddito Imponibile < 23,000€ => 0%
-Reddito Imponibile > 23,000€ => 0.8%
+Reddito IMPONIBILE < 23,000€ => 0%
+Reddito IMPONIBILE > 23,000€ => 0.8%
 
 Source: Comune di Milano – Addizionale comunale IRPEF -> https://www.comune.milano.it/argomenti/tributi/addizionale-comunale-irpef
 
 6. Somma Integrativa
 
-Per i lavoratori con REDDITO COMPLESSIVO fino a 20.000 € spetta una somma integrativa aggiuntiva in busta paga, calcolata in percentuale sul reddito:
+Per i lavoratori con reddito COMPLESSIVO fino a 20.000 € spetta una somma integrativa aggiuntiva in busta paga, calcolata in percentuale sul reddito:
 
 Fino a 8.500 € => 7,1% del reddito
 Tra 8.500 € e 15.000 € => 5,3% del reddito
