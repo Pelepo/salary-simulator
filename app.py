@@ -96,36 +96,58 @@ if st.button("Calcola netto"):
             with col2:
                 valore = round(-result.contributi, 2)
                 colored_badge(valore)
-        with st.expander("IRPEF", True, icon="💸"):
-            st.caption("L’imposta principale sul tuo reddito.")
-            col1, col2 = st.columns([4, 1])
-            with col1:
-                st.write("IRPEF lorda (prima degli sconti):")
-            with col2:
-                valore = round(-result.irpef_lorda, 2)
-                colored_badge(valore)
+        with st.expander("Imposte", True, icon="💸"):
+            with st.expander("IRPEF", True):
+                st.caption("L’imposta principale sul tuo reddito.")
+                col1, col2 = st.columns([4, 1])
+                with col1:
+                    st.write("IRPEF lorda (prima degli sconti):")
+                with col2:
+                    valore = round(-result.irpef_lorda, 2)
+                    colored_badge(valore)
 
-            col1, col2 = st.columns([4, 1])
-            with col1:
-                st.write("Detrazioni lavoro dipendente:")
-            with col2:
-                valore = round(result.detrazioni_lavoro, 2)
-                colored_badge(valore)
+                col1, col2 = st.columns([4, 1])
+                with col1:
+                    st.write("Detrazioni lavoro dipendente:")
+                with col2:
+                    valore = round(result.detrazioni_lavoro, 2)
+                    colored_badge(valore)
 
-            col1, col2 = st.columns([4, 1])
-            with col1:
-                st.write("Bonus cuneo fiscale:")
-            with col2:
-                valore = round(result.detrazione_cuneo_fiscale, 2)
-                colored_badge(valore)
+                col1, col2 = st.columns([4, 1])
+                with col1:
+                    st.write("Bonus cuneo fiscale:")
+                with col2:
+                    valore = round(result.detrazione_cuneo_fiscale, 2)
+                    colored_badge(valore)
 
-            col1, col2 = st.columns([4, 1])
-            with col1:
-                st.write("👉 IRPEF netta (quella che paghi davvero):")
-            with col2:
-                valore = round(-result.irpef_netta, 2)
-                colored_badge(valore)
+                col1, col2 = st.columns([4, 1])
+                with col1:
+                    st.write("👉 IRPEF netta (quella che paghi davvero):")
+                with col2:
+                    valore = round(-result.irpef_netta, 2)
+                    colored_badge(valore)
+            
+            with st.expander("Imposte Addizionali", True):
+                st.caption("Imposte locali trattenute da Regione e Comune.")
+                col1, col2 = st.columns([4, 1])
+                with col1:
+                    st.write("Addizionale regionale:")
+                with col2:
+                    valore = round(-result.addizionale_regionale, 2)
+                    colored_badge(valore)
 
+                col1, col2 = st.columns([4, 1])
+                with col1:
+                    st.write("Addizionale comunale:")
+                with col2:
+                    valore = round(-result.addizionale_comunale, 2)
+                    colored_badge(valore)
+            
+
+            
+
+        with st.expander("Bonus e Integrazioni Statali", True, icon="💰"):
+            st.caption("Importi aggiuntivi erogati dallo Stato.")
             col1, col2 = st.columns([4, 1])
             with col1:
                 st.write("Somma integrativa:")
@@ -138,24 +160,6 @@ if st.button("Calcola netto"):
                 st.write("Trattamento Integrativo:")
             with col2:
                 valore = round(result.trattamento_integrativo, 2)
-                colored_badge(valore)
-
-            
-
-        with st.expander("Addizionali", True, icon="🌆"):
-            st.caption("Imposte locali trattenute da Regione e Comune.")
-            col1, col2 = st.columns([4, 1])
-            with col1:
-                st.write("Addizionale regionale:")
-            with col2:
-                valore = round(-result.addizionale_regionale, 2)
-                colored_badge(valore)
-
-            col1, col2 = st.columns([4, 1])
-            with col1:
-                st.write("Addizionale comunale:")
-            with col2:
-                valore = round(-result.addizionale_comunale, 2)
                 colored_badge(valore)
         
         # FINALE 
