@@ -121,17 +121,26 @@ if st.button("Calcola netto"):
 
             col1, col2 = st.columns([4, 1])
             with col1:
-                st.write("Somma integrativa:")
-            with col2:
-                valore = round(result.somma_integrativa, 2)
-                colored_badge(valore)
-
-            col1, col2 = st.columns([4, 1])
-            with col1:
                 st.write("👉 IRPEF netta (quella che paghi davvero):")
             with col2:
                 valore = round(-result.irpef_netta, 2)
                 colored_badge(valore)
+
+            col1, col2 = st.columns([4, 1])
+            with col1:
+                st.write("Somma integrativa:")
+            with col2:
+                valore = round(result.somma_integrativa, 2)
+                colored_badge(valore)
+            
+            col1, col2 = st.columns([4, 1])
+            with col1:
+                st.write("Trattamento Integrativo:")
+            with col2:
+                valore = round(result.trattamento_integrativo, 2)
+                colored_badge(valore)
+
+            
 
         with st.expander("Addizionali", True, icon="🌆"):
             st.caption("Imposte locali trattenute da Regione e Comune.")

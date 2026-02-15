@@ -12,6 +12,7 @@ from salary.detrazioni import (
     calculate_cuneo_fiscale_bonus
 )
 from salary.somma_integrativa import calculate_somma_integrativa
+from salary.trattamento_integrativo import calculate_trattamento_integrativo
 from tax_rules.loader import get_tax_rules
 
 
@@ -51,8 +52,11 @@ def calculate_salary(input_data: SalaryInput) -> SalaryBreakdown:
     #6 Somma Integrativa
     somma_integrativa = calculate_somma_integrativa(ral)
 
+    #7 Trattamento Integrativo
+    trattamento_integrativo= calculate_trattamento_integrativo(reddito_complessivo=ral, irpef_lorda=irpef_lorda, detrazioni_totali=detrazioni)
+
     # 6 Sipendio Mensile Netto
-    netto_annuo = ral - contributi - irpef_netta - add_regionale - add_comunale + somma_integrativa
+    netto_annuo = ral - contributi - irpef_netta - add_regionale - add_comunale + somma_integrativa + trattamento_integrativo
     netto_mensile = netto_annuo / input_data.mensilita
 
     return SalaryBreakdown(
@@ -63,6 +67,7 @@ def calculate_salary(input_data: SalaryInput) -> SalaryBreakdown:
         detrazioni_lavoro=detrazioni_lavoro,
         detrazione_cuneo_fiscale=detrazione_cuneo_fiscale,
         somma_integrativa=somma_integrativa,
+        trattamento_integrativo=trattamento_integrativo,
         irpef_netta=irpef_netta,
         addizionale_regionale=add_regionale,
         addizionale_comunale=add_comunale,

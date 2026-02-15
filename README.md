@@ -2,9 +2,7 @@
 
 Prototipo di webApp sviluppata in Python (Streamlit) per stimare la retribuzione netta annuale e mensile a partire dalla RAL.
 
----
-
-## Obiettivo del progetto
+## 🎯 Obiettivo del progetto
 
 L'obiettivo del progetto è:
 
@@ -12,7 +10,7 @@ L'obiettivo del progetto è:
 - Mostrare tutte le voci che devono essere trattenute dal lordo in modo semplice e chiaro
 - Strutturare le logiche in modo modulare e versionabile
 
-## Ipotesi di simulazione
+## 👤 Perimetro ed Ipotesi
 
 Il modello attuale considera:
 
@@ -21,13 +19,11 @@ Il modello attuale considera:
 - Nessuna agevolazione fiscale
 - Nessun familiare a carico
 
-⚠️⚠️⚠️⚠️⚠️ Il modello non include il trattamento integrativo (ex Bonus IRPEF 100€)
-
-## 🧮 Logica di calcolo
+### 🧮 Modello di calcolo
 
 La RAL viene trasformata in netto secondo la seguente sequenza:
 
-1. Contributi previdenziali lavoratore
+### 1. Contributi previdenziali lavoratore
 
 9,19%
 
@@ -39,7 +35,7 @@ Source:
 INPS – Aliquote contributive lavoratori dipendenti -> https://www.inps.it
 Proia - INPS dei dipendenti -> http://www.proia.it/1/inps_dei_dipendenti_970948.html
 
-2. IRPEF progressiva a scaglioni
+### 2. IRPEF progressiva a scaglioni
 
 fino a 28,000€ => 23%
 fino a 50,000€ => 33% (Aggiornamento a seguito della Legge di Bilancio 2026)
@@ -48,7 +44,7 @@ oltre a 50,000€ => 43%
 Source:
 Agenzia delle Entrate – Aliquote e calcolo IRPEF -> https://www.agenziaentrate.gov.it/portale/imposta-sul-reddito-delle-persone-fisiche-irpef-/aliquote-e-calcolo-dell-irpef
 
-3. Detrazioni per lavoro dipendente
+### 3. Detrazioni per lavoro dipendente
 
 fino a 15,000€ => 1,955€
 15.000 € < Reddito IMPONIBILE ≤ 28.000 € => 1.910 + 1.190 × (28.000−reddito)​ / 13.000
@@ -67,7 +63,7 @@ Oltre 40.000 € => nessuna detrazione
 Source:
 ANCE - Legge di Bilancio 2025 -> https://portale.assimpredilance.it/articoli/legge-di-bilancio-2025-lavoro-dipendente-le-novita-fiscali
 
-4. Addizionale regionale
+### 4. Addizionale regionale
 
 fino a 15,000€ => 1,23%
 
@@ -79,7 +75,7 @@ Oltre i 50.000 euro => 1,73%
 Source:
 Regione Lombardia – Addizionale IRPEF -> https://www.regione.lombardia.it/wps/portal/istituzionale/HP/DettaglioRedazionale/servizi-e-informazioni/cittadini/tributi-e-canoni/addizionale-irpef
 
-5. Addizionale comunale
+### 5. Addizionale comunale
 
 Reddito IMPONIBILE < 23,000€ => 0%
 Reddito IMPONIBILE > 23,000€ => 0.8%
@@ -87,7 +83,7 @@ Reddito IMPONIBILE > 23,000€ => 0.8%
 Source:
 Comune di Milano – Addizionale comunale IRPEF -> https://www.comune.milano.it/argomenti/tributi/addizionale-comunale-irpef
 
-6. Somma Integrativa
+### 6. Somma Integrativa
 
 Per i lavoratori con reddito COMPLESSIVO fino a 20.000 € spetta una somma integrativa aggiuntiva in busta paga, calcolata in percentuale sul reddito:
 
@@ -99,15 +95,32 @@ Oltre 20.000 € => nessuna somma integrativa
 Source:
 Guida fiscale su detrazioni lavoro dipendente -> https://www.informazionefiscale.it/detrazioni-lavoro-dipendente-importo-calcolo
 
-6. Calcolo netto annuale e mensile
+### 7. Trattamento Integrativo
 
-⚠️⚠️⚠️⚠️⚠️ Il modello non include il trattamento integrativo (ex Bonus IRPEF 100€)
+Fino a 15.000 € => 1.200 €
+Tra 15.000 € e 28.000 € => Spetta solo se la somma delle detrazioni supera l’IRPEF lorda
+Oltre 28.000 € => nessun trattamento integrativo
+
+Source: Agenzia Più -> https://www.agenziapiu.com/notizie-lavoro/bonus-100-euro-2026/#Chi_ha_diritto_al_Bonus_100_euro_nel_2026
+
+### 8. Calcolo netto annuale e mensile
+
+Netto Annuale = RAL - Contributi previdenziali lavoratore - IRPEF Netta - Addizionale Regionale - Addizionale Comunale + Somma Integrativa + Trattamento Integrativo
+
+## ⚠️ Limitazioni del modello
+
+Il simulatore rappresenta una proiezione semplificata della retribuzione netta e presenta le seguenti limitazioni:
+
+- Utilizza un’aliquota contributiva media (9,19%) e non tiene conto di specificità legate a CCNL, settore, dimensione aziendale o fondi integrativi.
+- Assume residenza nel Comune di Milano e Regione Lombardia; non è attualmente parametrizzabile per altri territori.
+- Non considera familiari a carico, detrazioni per coniuge o figli.
+- Non include agevolazioni fiscali specifiche
+- Non considera eventuali premi di produzione, welfare aziendale o componenti variabili della retribuzione.
 
 ## 🚀 Possibili sviluppi futuri
 
 ### 1. Estensione del modello fiscale
 
-- Inclusione trattamento integrativo (ex Bonus 100€)
 - Gestione familiari a carico, bonus rimpatriati
 - Gestione più CCNL e aliquote INPS variabili
 - Supporto multi-regione e multi-comune
@@ -117,8 +130,6 @@ Guida fiscale su detrazioni lavoro dipendente -> https://www.informazionefiscale
 - Miglior breakdown grafico delle trattenute
 - Comparazione tra RAL diverse
 - Simulazione RAL vs partita IVA
-
----
 
 ## 🚀 Come eseguire il progetto
 

@@ -20,6 +20,7 @@ class SalaryBreakdown(BaseModel):
     detrazioni_lavoro: float
     detrazione_cuneo_fiscale: float
     somma_integrativa: float
+    trattamento_integrativo: float
     irpef_netta: float
     addizionale_regionale: float
     addizionale_comunale: float
