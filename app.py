@@ -168,15 +168,20 @@ if st.button("Calcola netto"):
             result.contributi +
             result.irpef_netta +
             result.addizionale_regionale +
-            result.addizionale_comunale
+            result.addizionale_comunale -
+            result.somma_integrativa -
+            result.trattamento_integrativo
         )
 
         percentuale_tasse = totale_tasse / result.ral
         percentuale_netto = result.netto_annuo / result.ral
 
-        percentuale_netto = max(0.0, min(1.0, percentuale_netto))
+        if percentuale_netto > 1:
+            st.progress(1.0)
+            st.caption("⚠️ Il netto supera la RAL per effetto dei crediti fiscali.")
+        else:
+            st.progress(percentuale_netto)
 
-        st.progress(percentuale_netto)
 
         st.write(
             f"Su {format_euro(result.ral)} di RAL:\n"
